@@ -13,7 +13,7 @@
         // Logical Operators : &&, ||, !
 
         let x = 4;
-        const y = 64;
+        let y = 64;
 
         console.log('Arithemetic Operators')
 
@@ -23,12 +23,34 @@
         console.log(y/x)
         console.log(y%x)
 
-        console.log('Relational Operators')
+        console.log('Assignment Operators')
 
         x = 25; //Assignment Operator
+        console.log(x)
+        x += 5; //increment operator shorthand
+        console.log(x)
+        y -= 4; //decrement operator shorthand
+        console.log(y)
+        y *= 2; //product operator shorthand
+        console.log(y)
+        y /= 2; // division operator shorthand
+        console.log(y)
+        y %= 7 // Modulo Operator shorthand
+        console.log(y)
 
-        console.log()
+        
+        console.log('Relational Operators')
+        console.log(x==y)
+        console.log(!(x==y))
+        console.log(x===y)
+        console.log(!(x==y))
+        console.log(x!=y)
+        console.log(x>=y)
+        console.log(x<=y)
 
+        console.log('Logical Operators')
+        console.log(x == 30 || y == 4)
+        console.log(x == 30 && y == x)
     </script>
 </body>
 </html>

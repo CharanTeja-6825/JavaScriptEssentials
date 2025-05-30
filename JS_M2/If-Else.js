@@ -1,5 +1,8 @@
 let age = 19;
 
+//IF-Else conditional statements are used to validate a condition, which can control
+// how the code runs and flows 
+
 // General Usage of if-else
 
 if (age >= 19) {
@@ -37,6 +40,4 @@ else{
     console.log('last stop');
 }
 
-
-//if-else with multiple conditions checked at once 
 

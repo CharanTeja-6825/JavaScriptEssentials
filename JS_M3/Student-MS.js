@@ -13,7 +13,7 @@ const addStudent = () => {
     }
 
     for(const key in student){
-        student[key] = prompt(`Enter Student ${key}`);
+        input = prompt(`Enter Student ${key}`);
     }
 
     students.push(student);
@@ -33,28 +33,41 @@ const removeStudent = () => {
 }
 
 const viewAllStudents = () => {
-    students.forEach((student) => {
+    if(students.length == 0){
+        window.alert('Student List is Empty');
+    }else{
+        students.forEach((student) => {
         console.log(`${student.name}`);
         console.log(`${student.age}`);
         console.log(`${student.gender}`);
         console.log(`${student.score}`);
         console.log(`${student.id}`);
-    })
+        })
+    }
 }
 
 const findStudentById = () => {
     const id = prompt('Enter student id : ');
-    const filteredStudent = students.filter((student) => student.id === id);
-    console.log(filteredStudent);
+    const filteredStudent = students.findIndex((student) => student.id === id);
+    if(filteredStudent === null){
+        window.alert(`${id} is not found`);
+    }else{
+        for(const key in filteredStudent){
+            console.log(`${key} : ${filteredStudent[key]}`);
+        }
+    }
 }
 
 const filterByScore = () => {
     const score = parseInt(prompt('Enter score to be filtered ? '));
-    const scoreStudents = students.filter((student) => student.score >= score);
-
-    scoreStudents.forEach((student) => {
+    if(score >= 100){
+        window.alert('Score must be less than 100');
+    }else{
+        const scoreStudents = students.filter((student) => student.score >= score);
+        scoreStudents.forEach((student) => {
         console.log(student);
-    })
+        })
+    }
 }
 
 

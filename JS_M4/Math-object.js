@@ -21,7 +21,37 @@ console.log(`Min Value : ${Math.min(5465, 786, 9999, 10000)}`);
 
 // Absolute Values using abs method
 
+console.log(`Absolute Value of 2 - 3 : ${Math.abs(2 - 3)}`);
+console.log(`Absolute Value of 3 - 2 : ${Math.abs(3 - 2)}`);
 
+
+// Math.pow() --> returns base ** exponent
+
+console.log(Math.pow(2, 20));
+
+// Math.exp() --> returns e ** argument
+
+console.log(Math.exp(3));
+
+// Math.sqrt() --> returns square root of a function
+
+console.log(Math.sqrt(16));
+
+
+// function to check if a number is perfect square
+
+
+const isPerfectSquare = (num) => {
+    if(Math.sqrt(num) % 1 === 0){
+        console.log(`${num} is perfect square`);
+    }else{
+        console.log(`${num} is not a perfect square`);
+    }
+}
+
+console.log(parseInt(Math.random(10) * 1000));
+
+isPerfectSquare(25);
 
 
 

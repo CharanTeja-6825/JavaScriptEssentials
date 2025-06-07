@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mouse Over & Out</title>
+</head>
+<body>
+    <!-- Hover Event -->
+    <h2 id="modify">This is going to be style using java script</h2>
+    <!-- Event listener keyup -->
+    <input id="input" type="text" placeholder="Enter something...">
+    <p id="displayText"></p>
+    <!-- change -->
+     <select id="dropdown">
+        <option value="" selected disabled>--select--</option>
+        <option value="apple">Apple</option>
+        <option value="Oppo">Oppo</option>
+        <option value="Vivo">Vivo</option>
+     </select>
+     <p id="output"></p>
+     <!-- Removing Event Listener -->
+      <button id="btn">Click here !</button>
+
+    <script>
+
+        // hover mouseover & mouseout
+        document.getElementById("modify").addEventListener("mouseover", function(){
+            document.getElementById("modify").style.color="red";
+        });
+        document.getElementById("modify").addEventListener("mouseout", function(){
+            document.getElementById("modify").style.color="purple";
+        });
+
+        // keyup
+
+        const ip = document.getElementById("input");
+        const displayText = document.getElementById("displayText");
+
+        ip.addEventListener("keyup", function(e){
+            displayText.textContent = `Text Typed : ${e.target.value}`;
+        })
+
+        // change
+
+        const dropdown = document.getElementById("dropdown"),
+        output = document.getElementById("output");
+
+        dropdown.addEventListener("change", function(){
+            output.textContent="Selected Option : "+dropdown.value;
+        })
+
+        //remove Event Listener
+        
+        const handleClick= () => {
+            console.log('handling click');
+            btn.removeEventListener("click", handleClick);
+        }
+
+        btn.addEventListener("click", handleClick);
+    </script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+</head>
+    <style>
+        .task{
+            cursor: pointer;
+        }
+        .task:hover{
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
+    <h3>Todo List</h3>
+    <div class="tasks-container">
+        <div class="to-do-container">
+            <div class="input-container">
+                <input id="input-task" type="text" placeholder="Enter you task">
+                <button onclick="addTask()">Submit</button>
+            </div>
+            <center><p>Your Tasks</p></center>
+            <ul id="task-list"></ul>
+        </div>
+    </div>
+    <script>
+        const taskInput = document.getElementById("input-task");
+        const tasklist = document.getElementById("task-list");
+
+        function addTask(){
+            const tasktext = taskInput.value.trim();
+
+            if(tasktext === "") return;
+
+            const taskItem = document.createElement("li");
+            taskItem.textContent = tasktext;
+            taskItem.classList.add("task");
+
+            taskItem.addEventListener("click", function(){
+                tasklist.removeChild(taskItem);
+            });
+
+            tasklist.appendChild(taskItem);
+            taskInput.value="";
+        }
+        
+    </script>
+</body>
+</html>

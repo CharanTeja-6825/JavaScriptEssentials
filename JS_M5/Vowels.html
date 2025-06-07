@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vowels Counter</title>
+</head>
+<body>
+    <input on type="text" placeholder="Enter a word" id="vowel-text">
+    <button onclick="count()">Count Vowels</button>
+    <button onclick="reverse()">Reverse</button>
+    <h2 id="vowel">Vowel Count : </h2>
+
+    <h2 id="reverse">Reverse : </h2>
+    <script>
+        const text = document.getElementById("vowel-text");
+        function count(){
+            const trimtext = text.value.trim();
+            if(trimtext === ""){
+                console.log('Input is Empty');
+                return;
+            }
+            let vowelCount = 0;
+            for(let letter of trimtext){
+                if(letter === 'a' || letter === 'e' ||letter === 'i' ||letter === 'o' ||letter === 'u' ){
+                    vowelCount++;
+                }
+            }
+            const countDisplay = document.createElement("h2");
+            countDisplay.textContent = `Number of Vowels in the given String : ${vowelCount}`;
+            // document.body.appendChild(countDisplay);
+            const container = document.getElementById("vowel");
+            container.appendChild(countDisplay);
+        }
+
+        function reverse(){
+            const trimtext = text.value.trim();
+            if(trimtext === ""){
+                console.log('Input is Empty');
+                return;
+            }
+            let reversed = '';
+            for (let i = trimtext.length - 1; i >= 0; i--) {
+                reversed += trimtext[i];
+            }
+
+            const result = document.createElement("h2");
+            result.textContent=`Reverse of ${trimtext} is ${reversed}`;
+
+            const vc = document.getElementById("reverse");
+            vc.appendChild(result);
+        }
+    </script>
+</body>
+</html>

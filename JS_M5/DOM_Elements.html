@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dom Elements</title>
+</head>
+<body>
+    <h3 class="content">Jai Balayya 1</h3>
+    <h3 class="content">Jai Balayya 2</h3>
+    <h3 class="content">Jai Balayya 3</h3>
+
+    <button class=".content-button">B1</button>
+
+    <script>
+        const newElement = document.createElement('p');
+
+        newElement.textContent='New Jai Balayya !';
+
+        // document.body.appendChild(newElement);
+
+        let toggle = false;
+
+        document.querySelector("button").addEventListener("click", function(){
+            if(!toggle){
+                toggle = true;
+                document.body.appendChild(newElement);
+            }else{
+                toggle = false;
+                document.body.removeChild(newElement);
+            }
+        })
+    </script>
+</body>
+</html>

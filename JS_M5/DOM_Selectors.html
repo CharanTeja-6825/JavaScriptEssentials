@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dom Selectors</title>
+</head>
+<body>
+    <h1 id="main-header">This is h1 heading</h1>
+
+    <p class="content">this is content 1</p>
+    <p class="content">this is content 2</p>
+    <p class="content">this is content 3</p>
+
+    <button onclick="changeText()">b1</button>
+    <button>b2</button>
+
+    <script>
+        // selecting by id and manipulating the content
+        function changeText(){
+            document.getElementById('main-header').textContent='Jai Balayya';
+        }
+
+
+        // selecting multiple elements by class
+        const contents = document.getElementsByClassName('content');
+        for(let content of contents){
+            console.log(content);
+        }
+
+        // selecting tags
+        const buttons = document.getElementsByTagName('button');
+        console.log(buttons);
+        for(let button of buttons){
+            console.log(button);
+        }
+    </script>
+</body>
+</html>

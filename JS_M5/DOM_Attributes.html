@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dom Attributes</title>
+</head>
+<body>
+    <h3>Manipulation of DOM Attributes</h3>
+    <p class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi, nostrum reprehenderit. Saepe quis alias deserunt ratione sed commodi voluptas voluptate ducimus. Minus magni ullam excepturi earum maxime fuga aspernatur? Velit.</p>
+    <p class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum similique alias cum, corporis quis illo perspiciatis ex praesentium explicabo magnam doloremque nihil repellat, id voluptate ratione obcaecati amet quod! Ex.</p>
+    <p class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis soluta dignissimos, tempore similique atque esse, eos animi non excepturi maiores inventore veniam commodi porro velit in ipsum nisi delectus voluptas?</p>
+    <button class="b1">click here</button>
+    <button>click here too !</button>
+    <script>
+        // creating and maipulating the elements of DOM
+
+        const link = document.createElement("a");
+
+        link.textContent = 'Visit Google Here';
+
+        document.body.appendChild(link);
+
+        link.setAttribute("href", "https://www.google.com");
+        link.setAttribute("target", "_blank");
+
+        const att = link.getAttribute("href");
+        console.log(att);
+
+    </script>
+</body>
+</html>

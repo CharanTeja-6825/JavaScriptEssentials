@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Manipulation</title>
+</head>
+<body>
+    <h1 id="manipulate">This is a manipulated heading using CSS, by Javascript</h1>
+    <p class="content">Content 1</p>
+    <p class="content">Content 2</p>
+    <p class="content">Content 3</p>
+
+    <script>
+        
+        const heading = document.getElementById("manipulate");
+        
+        // .style is used to add CSS properties to the container.
+        heading.style.textAlign='center';
+
+        // innerHTML manipulates the content inside the container and we can add more html inside the container also.
+        heading.innerHTML="<span style='color:red;font-size:50px;'>Manipulated</span> using <span style='color:blue;font-size:3rem;'>CSS</span> but by <span style='color:gold;font-size:3rem;'>JS</span>";
+        
+    </script>
+</body>
+</html>

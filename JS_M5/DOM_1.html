@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Manipulation</title>
+</head>
+<body>
+    <h1 id="main-head">This is going to be changed by DOM</h1>
+    <p>Just some content</p>
+    <button onclick="changeHeading()">click here</button>
+
+    <script>
+        let changed = false;
+        const changeHeading = () => {
+            if(!changed){
+                changed=true;
+                document.getElementById("main-head").textContent='DOM In Action !';
+            }else{
+                changed=false;
+                document.getElementById("main-head").textContent='text toggled';
+            }
+        }
+    </script>
+</body>
+</html>

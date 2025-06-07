@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Query Selectors</title>
+</head>
+<body>
+    <h3 class="content">This is some html content 1</h3>
+    <h3 class="content">This is some html content 2</h3>
+    <h3 class="content">This is some html content 3</h3>
+    <h3 class="content">This is some html content 4</h3>
+
+    <script>
+        // DOM Query selectors are used with class names and ids and can be iterated
+        // by using in-built for-each unlike the getElementByID or className, 
+        // Let's Start
+
+        const content = document.querySelector(".content");
+        // prints content inside the query (basically the tag)
+        console.log(content.textContent);
+
+        // selecting multiple queries using selectQueryAll(".className")
+
+        const contents = document.querySelectorAll(".content")
+
+        console.log(contents);
+        // iterate and print using forEach
+
+        contents.forEach((content, ind) => {
+            console.log(`Content[${ind}] : `, content.textContent);
+        })
+
+    </script>
+</body>
+</html>

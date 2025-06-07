@@ -7,8 +7,8 @@
 </head>
 <body>
     <input on type="text" placeholder="Enter a word" id="vowel-text">
-    <button onclick="count()">Count Vowels</button>
-    <button onclick="reverse()">Reverse</button>
+    <button onclick="count(), reverse()">Submit</button>
+    <!-- <button onclick="reverse()">Reverse</button> -->
     <h2 id="vowel">Vowel Count : </h2>
 
     <h2 id="reverse">Reverse : </h2>
@@ -27,7 +27,7 @@
                 }
             }
             const countDisplay = document.createElement("h2");
-            countDisplay.textContent = `Number of Vowels in the given String : ${vowelCount}`;
+            countDisplay.textContent = `Number of Vowels in the given String : \"${vowelCount}\"`;
             // document.body.appendChild(countDisplay);
             const container = document.getElementById("vowel");
             container.appendChild(countDisplay);
@@ -45,10 +45,11 @@
             }
 
             const result = document.createElement("h2");
-            result.textContent=`Reverse of ${trimtext} is ${reversed}`;
+            result.textContent=`Reverse of ${trimtext} is \"${reversed}\"`;
 
             const vc = document.getElementById("reverse");
             vc.appendChild(result);
+            text.value="";
         }
     </script>
 </body>

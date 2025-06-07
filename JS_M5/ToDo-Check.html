@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo Interactive</title>
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #000000;
+            color: #F4F4F6;
+        }
+        .task{
+            /* background-color: lightgray; */
+            padding: 1rem;
+            background-color: #E6E6E9;
+            display: flex;
+            justify-content: space-between;
+            cursor: pointer;
+            /* width: 300px; */
+            color: black;
+            box-shadow: 0px 2px 10px rgba(128, 128, 128, 0.506);
+            border-radius: 0.5rem;
+            transition: 0.15s all ease-in-out;
+        }
+        ul{
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .task:hover{
+            background-color: lightgray;
+            color: black;
+        }
+        .main-container{
+            display: flex;
+            /* justify-content: space-between; */
+            align-items: center;
+            flex-direction: column;
+            border: 2px solid black;
+            width: 600px;
+            gap: 1rem;
+            background-color: #66666E;
+            border-radius: 1rem;
+
+        }
+        .input-container{
+            display: flex;
+            border: 1px solid black;
+            width: 300px;
+            border-radius: 0.5rem;
+            border: none;
+            box-shadow: 0px 2px 10px #E6E6E9;
+        }
+        input{
+            width: 100%;
+            padding: 1rem;
+            border: none;
+            border-top-left-radius: 0.5rem;
+            border-bottom-left-radius: 0.5rem;
+        }
+        input:focus{
+            outline: none;
+        }
+        button{
+            width: 100px;
+            border-top-right-radius: 0.5rem;
+            border-bottom-right-radius: 0.5rem;
+            border: none;
+            transition: 0.15s all ease-in-out;
+            cursor: pointer;
+        }
+        button:hover{
+            background-color: rgb(0, 123, 255);
+            color: white;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <h1>To-Do List</h1>
+        <div class="input-container">
+            <input type="text" id="task-input" placeholder="Enter your task">
+            <button onclick="addTask()">Submit</button>
+        </div>
+        <ul id="tasks">
+            <!-- <li class="task">Sample</li> -->
+        </ul>
+    </div>
+    <script>
+        const taskInput = document.getElementById("task-input");
+        const taskList = document.getElementById("tasks");
+        const message = document.createElement("p");
+        message.textContent="Enter the Task !!"
+        message.style.color="red";
+        message.style.fontWeight="600";
+
+        function addTask(){
+            const taskText = taskInput.value.trim();
+            // Empty input handling
+            if(taskText === ""){
+                document.body.appendChild(message);
+                return;
+            }
+                // Adding the Task
+                const taskItem = document.createElement("li");
+
+                // Adding the check box Feature
+                taskItem.innerHTML=taskText+"<input type='checkbox' id='check-task'>";
+                taskItem.classList.add("task");
+                taskList.appendChild(taskItem);
+                taskInput.value="";
+                if(document.body.contains(message)){
+                    document.body.removeChild(message);
+                }
+
+                // Removing the Task
+                taskItem.addEventListener("click", function(event){
+                    if(event.target.tagName.toLowerCase() !== 'input'){
+                        taskList.removeChild(taskItem);
+                    }
+                });
+        }
+
+    </script>
+</body>
+</html>

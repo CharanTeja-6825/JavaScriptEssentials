@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Using Fetch</title>
+</head>
+<body>
+    <h3>Using Fetch to import external data into the say into the webpage.</h3>
+    <p>checkout the console the data would be printed by now !</p>
+
+    <script>
+        // async fetchUsers = () => {
+        //     const response = await fetch("https://dummyjson.com/users");
+        // }
+        async function fetchUsers(){
+            console.log("Function start");
+            try {
+                const response = await fetch("https://dummyjson.com/users");
+                const user =await response.json();
+                console.log("User : ", user);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        fetchUsers();
+    </script>
+</body>
+</html>

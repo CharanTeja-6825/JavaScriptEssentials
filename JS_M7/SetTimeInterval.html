@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Run code blocks or functions multiple times</title>
+</head>
+<body>
+    <h3>what is setTimeInterval() in Javascript : </h3>
+    <p>setTimeInterval() runs functions multiple times by setting up and interval</p>
+    <script>
+        console.log("let the game start !!");
+        let count = 10;
+        const timer = document.createElement("h2");
+        timer.textContent = "Count down : " + count;
+        const interval = setInterval(() => {
+            count = count - 1;
+            timer.textContent = "Count down : " + count;
+            document.body.appendChild(timer);
+            if(count === 0){
+                clearInterval(interval);
+            }
+        }, 1000);
+    </script>
+</body>
+</html>

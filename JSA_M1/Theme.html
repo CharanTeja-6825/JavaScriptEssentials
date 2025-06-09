@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theme setting</title>
+    <style>
+        .light{
+            background-color: white;
+            color: black;
+            font-family: sans-serif;
+        }
+        .dark{
+            color: white;
+            background-color: black;
+            font-family: sans-serif;
+        }
+    </style>
+</head>
+<body onload="applyTheme()">
+    <!-- Lets make this webpage persist the theme set using local storage -->
+     <!-- checkout script.js for the code -->
+    <h3>Let's change the theme of the background.</h3>
+    <h4>this theme is going to be saved into the local storage check application tab in the console.</h4>
+    <p>click below button to toggle the background</p>
+    <button onclick="changeTheme('light')">click here for light</button>
+    <button onclick="changeTheme('dark')">click here for dark</button>
+    <script src="script.js"></script>
+</body>
+</html>

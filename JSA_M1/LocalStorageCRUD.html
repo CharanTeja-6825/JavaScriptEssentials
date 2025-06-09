@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD Using local storage</title>
+    <style>
+        section{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <h2>CRUD using Local Storage</h2>
+        <p>In this session we are going to perform CRUD operations using the Local storage</p>
+        <p>checkout the console for the magic to happen</p>
+    </section>
+    <script>
+        console.log("just confirming");
+        const user = {
+            name : "Charan",
+            age : "19",
+        }
+        // Adding user to the local storage
+        localStorage.setItem("userData", JSON.stringify(user));
+
+        // Retrieving user from the local storage
+        const retrievedUser = localStorage.getItem("userData");
+        let jsonobj = JSON.parse(retrievedUser);
+        
+        for(let key in jsonobj){
+            console.log(`Key : ${key}`);
+            console.log(`user[${key}] : ${jsonobj[key]}`);
+        }
+
+        jsonobj.name="Moksha";
+        jsonobj.age="19";
+
+        // updating the existing user
+        localStorage.setItem("userData", JSON.stringify(jsonobj));
+        console.log("update sucess !");
+
+        // Deleting the user from LocalStorage
+
+        localStorage.removeItem("userData");
+        console.log(jsonobj.name, "was removed successfully !");
+        console.log(localStorage.length);
+
+
+        // Manipulation of arrays in Local Storage
+        let array = [1, 2, 3, 4, 5, 6];
+        // addition of array to the local storage
+        localStorage.setItem("numbers", JSON.stringify(array));
+        console.log(typeof array);
+        const output = JSON.parse(localStorage.getItem("numbers"));
+        console.log(output);
+        
+    </script>
+</body>
+</html>

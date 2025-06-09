@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo</title>
+    <style>
+        .task{
+            list-style: none;
+            cursor: pointer;
+            transition: all 0.15s ease-in-out;
+        }
+        .task:hover{
+            background-color: lightgray;
+        }
+    </style>
+</head>
+<body>
+    <input id="task-input" type="text" placeholder="Enter your task">
+    <button onclick="addTask()">Add Task</button>
+    <p>Your Tasks : </p>
+    <ul id="task-list">
+
+    </ul>
+
+    <script>
+
+        const taskInput = document.getElementById("task-input");
+        const taskList = document.getElementById("task-list");
+        let tasks = [];
+        if(!localStorage.getItem("taskList")){
+            localStorage.setItem("taskList", JSON.stringify(tasks));
+        }else{
+            tasks = JSON.parse(localStorage.getItem("taskList"));
+            tasks.forEach((task) => {
+
+                const taskItem = document.createElement("li");
+                taskItem.textContent=task;
+                taskItem.classList.add("task");
+                taskList.appendChild(taskItem);
+
+                taskItem.addEventListener("click", function(){
+                    tasks.pop(taskItem.textContent);
+                    localStorage.setItem("taskList", JSON.stringify(tasks));
+                    taskList.removeChild(taskItem);
+                });
+            })
+        }
+        function addTask(){
+            // trimming and assigning the input
+            const taskText = taskInput.value.trim();
+            // adding the task
+            if(taskText === "" || taskText === null){
+                alert("Enter a valid task !");
+                return;
+            }
+
+            tasks.push(taskText);
+            // updating the local storage
+            localStorage.setItem("taskList", JSON.stringify(tasks));
+            // creating the required elements to display the content
+            const taskItem = document.createElement("li");
+            taskItem.classList.add("task");
+            taskItem.textContent=taskText;
+            taskList.appendChild(taskItem);
+            // resetting the input box
+            taskInput.value="";
+        }
+    </script>
+</body>
+</html>

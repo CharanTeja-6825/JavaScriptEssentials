@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise Chain Handling</title>
+</head>
+<body>
+    <table border="1" id="thing-list">
+
+    </table>
+    <button onclick="fetchData('products')">Clike to get userData</button>
+    <script>
+        // global variables..
+        const thingList = document.getElementById("thing-list");
+
+        // retrieve user using promise 
+        const fetchData = (option) => {
+            fetch(`https://dummyjson.com/${option}`)
+                // getting the response from the promise object
+                .then((response) => {
+                    return response.json();  // this contains response object with mutliple key-val pairs.
+                })
+                // passing the response to the next .then and displaying the data
+                .then((userData) => { //userData contains length, users(data we need), etc.., keys in it 
+                    let things = [];
+                    if(option === "users"){
+                        things = userData.users;
+                    }else{
+                        things = userData.products;
+                    }
+                    let headers = [];
+                    if(option === "users"){
+                        // headers = ["FirstName", "Age", "Username"];
+                        headers = {
+                            firstName : "FirstName",
+                            age : "Age",
+                            username : "Username"
+                        }
+                        createHeaders(headers);
+                    }else{
+                        headers = {
+                            title : "Title",
+                            price : "Price",
+                            category : "Category"
+                        }
+                        createHeaders(headers);
+                    }
+                    // const newThings = JSON.stringify(things);
+                    console.log(things);  // we select and assign it, to a variable.
+                    createRows(headers, things);
+                })
+                .catch(error => console.log(error));
+
+        }
+
+        const createHeaders = (headers) => {
+            for(let key in headers){
+                const hc = document.createElement("th");
+                hc.textContent=headers[key];
+                thingList.appendChild(hc);
+            };
+        }
+
+        const createRows = (headers, things) => {
+            things.forEach((thing) => {
+                const row = document.createElement("tr");
+                for(let key in headers){
+                    const hd = document.createElement("td");
+                    hd.textContent=thing[key];
+                    console.log(hd.textContent);
+                    row.appendChild(hd);
+                };
+                thingList.appendChild(row);
+            })
+        }
+    </script>
+</body>
+</html>

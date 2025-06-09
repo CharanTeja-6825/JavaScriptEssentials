@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise</title>
+</head>
+<body>
+    <script>
+        const fetchDataPromise = () => {
+            fetch("https://dummyjson.com/products")
+                .then((response) => {
+                    const productData = response.json();
+                    return productData;
+                })
+                .then((data) => {
+                    const products = data.products;
+                    products.forEach((product, index) => {
+                        console.log(product.title);
+                        console.log(product.category);
+                        console.log(product.price);
+                    });
+                });
+        }
+        // fetchDataPromise();
+
+        async function fetchDataAsync(){
+            try {
+                const response = await fetch("https://dummyjson.com/products");
+                const proData = await response.json();
+                console.log(proData);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        fetchDataAsync();
+    </script>
+</body>
+</html>

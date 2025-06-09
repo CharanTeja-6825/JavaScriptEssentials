@@ -4,16 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Promise Chain Handling</title>
+    <style>
+        table{
+            border-collapse: collapse;
+        }
+        .row{
+            text-align: center;
+        }
+        button{
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
+    <!-- change the argument to fetchData('users') to get user data -->
+    <p>Select you choice and click on get Data</p>
+    <select id="options">
+        <option value="" disabled selected>--select--</option>
+        <option value="users">Users</option>
+        <option value="products">Products</option>
+    </select>
+
+    <button onclick="{
+        const selected = document.getElementById('options');
+        if(selected.value === 'users'){
+            fetchData('users');
+        }else{
+            fetchData('products');
+        }
+    }">Get Data</button>
+
+    <!-- place to render the objects data -->
     <table border="1" id="thing-list">
 
     </table>
-    <button onclick="fetchData('products')">Clike to get userData</button>
+
     <script>
         // global variables..
         const thingList = document.getElementById("thing-list");
-
+        let cost = 0;
         // retrieve user using promise 
         const fetchData = (option) => {
             fetch(`https://dummyjson.com/${option}`)
@@ -46,11 +75,11 @@
                         }
                         createHeaders(headers);
                     }
-                    // const newThings = JSON.stringify(things);
                     console.log(things);  // we select and assign it, to a variable.
                     createRows(headers, things);
+
                 })
-                .catch(error => console.log(error));
+                .catch(error => console.log(error));            
 
         }
 
@@ -63,16 +92,24 @@
         }
 
         const createRows = (headers, things) => {
+            let cost = 0;
             things.forEach((thing) => {
                 const row = document.createElement("tr");
                 for(let key in headers){
                     const hd = document.createElement("td");
                     hd.textContent=thing[key];
+                    if(key === "price"){
+                        cost = cost + Math.round(parseFloat(thing[key]));
+                    }
                     console.log(hd.textContent);
+                    row.classList.add("row");
                     row.appendChild(hd);
                 };
                 thingList.appendChild(row);
-            })
+            });
+            const displayCost = document.createElement("p");
+            displayCost.textContent="Total Cost : " + cost.toString() + "$";
+            document.body.append(displayCost);
         }
     </script>
 </body>

@@ -4,8 +4,80 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Axios</title>
+    <style>
+        table{
+            border-collapse: collapse;
+            border: 2px solid black;
+        }
+    </style>
 </head>
 <body>
-    
+    <h3>Fetching User Data from external JSONPlaceholder using axios</h3>
+    <select id="age-select">
+        <option value="" selected disabled>--selected</option>
+        <option value="30">30</option>
+        <option value="40">40</option>
+    </select>
+    <button onclick="fetchData()">Click here</button>
+     <!-- <table id="post-list" border="1">
+        <th>Username</th>
+        <th>Age</th>
+    </table> -->
+    <script>
+        const table = document.createElement("table");
+        table.setAttribute("border", 1);
+        const postList = document.getElementById("post-list");
+        let called = false;
+
+        document.addEventListener("DOMContentLoaded", function(){
+            const script = document.createElement("script");
+            script.src="https://cdn.jsdelivr.net/npm/axios@1.9.0/dist/axios.min.js";
+            script.onload=() => console.log('Axios loaded Successfully');
+            document.body.appendChild(script);
+        });
+
+
+        const dropVal = document.getElementById("age-select");
+        dropVal.addEventListener("change", function(){
+            console.log(dropVal.value);
+            const rows = document.querySelectorAll("tr");
+            rows.forEach((row) => {
+                row.remove();
+            })
+        })
+
+        async function fetchData(){
+            try {
+                const age = dropVal.value;
+                const response = await axios.get("https://dummyjson.com/users");
+                const postData = response.data.users;
+                console.log(postData);
+
+                const name = document.createElement("th");
+                name.textContent="Username";
+                table.appendChild(name);
+                const headerAge = document.createElement("th");
+                headerAge.textContent="Age";
+                table.appendChild(headerAge);
+
+                const filterData = postData.filter((post) => post.age >= age);
+
+                filterData.forEach((post) => {
+                    const row = document.createElement("tr");
+                    const userId = document.createElement("td");
+                    userId.textContent=post.username;
+                    row.appendChild(userId);
+                    const title = document.createElement("td");
+                    title.textContent = post.age;
+                    row.appendChild(title);
+                    table.appendChild(row);
+                });
+                // called = true;
+                document.body.appendChild(table);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+    </script>
 </body>
 </html>

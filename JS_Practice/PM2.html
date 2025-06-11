@@ -35,16 +35,17 @@
     }">Get Data</button>
 
     <!-- place to render the objects data -->
-    <table border="1" id="thing-list">
-
-    </table>
 
     <script>
         // global variables..
-        const thingList = document.getElementById("thing-list");
-        let cost = 0;
+        let thingList = document.createElement("table");
+        // let cost = 0;
+        let called = false;
         // retrieve user using promise 
         const fetchData = (option) => {
+            if(document.body.contains(thingList)){
+                document.body.removeChild(thingList);
+            }
             fetch(`https://dummyjson.com/${option}`)
                 // getting the response from the promise object
                 .then((response) => {
@@ -80,7 +81,7 @@
 
                 })
                 .catch(error => console.log(error));            
-
+                called = true;
         }
 
         const createHeaders = (headers) => {
@@ -109,7 +110,8 @@
             });
             const displayCost = document.createElement("p");
             displayCost.textContent="Total Cost : " + cost.toString() + "$";
-            document.body.append(displayCost);
+            document.body.appendChild(displayCost);
+            document.body.appendChild(thingList);
         }
     </script>
 </body>

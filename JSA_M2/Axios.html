@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile Fetch</title>
+</head>
+<body>
+    <h3>Retrieve Profile</h3>
+    <button onclick="getProfile()">Get Profile</button>
+    <h3 id="profile-name"></h3>
+    <img id="profile-img" src="" alt="Profile">
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Load Axios dynamically
+            const script = document.createElement('script');
+            script.src = 'https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js';
+            script.onload = () => console.log('Axios loaded!');
+            document.body.appendChild(script);
+        });
+
+        async function getProfile() {
+            try {
+                const response = await axios.get('https://randomuser.me/api/');
+                const user = response.data.results[0];
+                
+                // Ensure these IDs match your HTML
+                document.getElementById('profile-name').textContent = user.name.first;
+                document.getElementById('profile-img').src = user.picture.thumbnail;
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+    </script>
+</body>
+</html>

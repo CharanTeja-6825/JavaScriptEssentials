@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XHR Object</title>
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        button{
+            cursor: pointer;
+        }
+        img{
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <h3>Retrieving Data using traditional(OLD) XHR object </h3>
+    <button onclick="getData()">Click to get Data</button>
+    <h3 id="profile-name">User Profile</h3>
+    <img id="profile-img" width="200px" src="https://static.vecteezy.com/system/resources/previews/026/619/142/original/default-avatar-profile-icon-of-social-media-user-photo-image-vector.jpg" alt="profile">
+    <script>
+        // global variables
+        const profileName = document.getElementById("profile-name");
+        const profileImage = document.getElementById("profile-img");
+        // lets start learning about xhr
+
+        // setting up the request
+        // xhr.open("GET", "https://randomuser.me/api/", true);
+
+        // handling the output
+        const getData = () => {
+            const xhr = new XMLHttpRequest();
+            xhr.open("GET", "https://randomuser.me/api/", true);
+            xhr.onload = function(){
+            if(xhr.status === 200){
+                const userData = JSON.parse(xhr.responseText); // converts into JSON format
+                const user = userData.results[0];
+                // console.log(user);
+                displayUser(user); 
+            }else{
+                console.log("Error :", xhr.status);
+            }
+            };
+            // this below line handles the errors
+            xhr.onerror = function(){
+                alert('Request Failed');
+            };
+
+            // sending the request
+            xhr.send();
+        }
+
+        const displayUser = (user) => {
+            const profile = user.picture.large;
+            profileImage.setAttribute("src", profile);
+            const name = user.name.first;
+            profileName.textContent=name;
+        }
+    </script>
+</body>
+</html>

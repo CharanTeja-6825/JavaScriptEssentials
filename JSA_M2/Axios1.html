@@ -10,6 +10,7 @@
             border: 2px solid black;
         }
     </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h3>Fetching User Data from external JSONPlaceholder using axios</h3>
@@ -19,10 +20,11 @@
         <option value="40">40</option>
     </select>
     <button onclick="fetchData()">Click here</button>
-     <!-- <table id="post-list" border="1">
-        <th>Username</th>
-        <th>Age</th>
-    </table> -->
+    <label class="switch">
+        <input type="checkbox">
+        <span class="slider round"></span>
+    </label>
+
     <script>
         const table = document.createElement("table");
         table.setAttribute("border", 1);

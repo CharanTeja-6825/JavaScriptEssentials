@@ -5,6 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Random Users using Axios</title>
     <style>
+        body,button{
+            font-family: 'Courier New', Courier, monospace;
+            background-color: lightgray;
+        }
+        button{
+            background-color: black;
+            border: none;
+            color: white;
+            padding: 1rem;
+            border-radius: 0.3rem;
+            font-size: medium;
+            font-weight: 600;
+            cursor: pointer;
+        }
         #container{
             display: flex;
             justify-content: center;
@@ -16,6 +30,53 @@
             width: 200px;
             border-radius: 50%;
         }
+        .user-individual{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            vertical-align: middle;
+            /* gap: 1rem;  */
+            border: 2px solid black;
+            padding: 0.7rem;
+            border-radius: 0.5rem;
+        }
+        .user-profile-container{
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1rem;
+        }
+        @media (max-width:1070px){
+            .user-profile-container{
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        @media (max-width:700px){
+            .user-profile-container{
+                grid-template-columns: 1fr;
+            }
+        }
+        input{
+            padding: 1rem;
+            width: 100%;
+            border: none;
+            border-radius: 0.5rem;
+            display: inline;
+        }
+        input:focus{
+            outline: none;
+        }
+        .search-container{
+            display: flex;
+            gap: 1rem;
+            width: 50%;
+        }
+        .options{
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            align-items: center;
+        }
     </style>
 </head>
 <body>
@@ -23,10 +84,18 @@
         <h2>User Fetcher</h2>
         <!-- <button>click to get Single User</button>
         <button>click to get 5 users</button> -->
-        <button  onclick="fetchUserData(1)">click to get user</button>
-        <button  onclick="fetchUserData(5)">click to get 5 users</button>
-        <input id="input-name" type="text" placeholder="Enter a name">
-        <button onclick="handleSearch()">Submit</button>
+        <div class="options">
+            <button  onclick="fetchUser(1)">click to get user</button>
+            <button  onclick="fetchUser(5)">click to get 5 users</button>
+            <button onclick="fetchUS()">US Citizens</button>
+            <button onclick="countGenders()">Count Genders</button>
+            <button onclick="averageAge()">Average Age</button>
+            <button onclick="clearAll()">Clear All filters</button>
+        </div> 
+        <div class="search-container">
+            <input id="input-name" type="text" placeholder="Enter a name">
+            <button onclick="handleSearch()">Submit</button>
+        </div> 
         <p id="message"></p>
     </div>
     <script src="script.js"></script>

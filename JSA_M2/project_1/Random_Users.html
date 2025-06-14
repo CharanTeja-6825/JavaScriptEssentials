@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Users using Axios</title>
+    <style>
+        #container{
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+        .image{
+            width: 200px;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h2>User Fetcher</h2>
+        <!-- <button>click to get Single User</button>
+        <button>click to get 5 users</button> -->
+        <button  onclick="fetchUserData(1)">click to get user</button>
+        <button  onclick="fetchUserData(5)">click to get 5 users</button>
+        <input id="input-name" type="text" placeholder="Enter a name">
+        <button onclick="handleSearch()">Submit</button>
+        <p id="message"></p>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

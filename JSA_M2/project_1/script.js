@@ -1,7 +1,9 @@
 // getting profile image using axios
 
 const userContainer = document.getElementById("container");
+
 const inputElement = document.getElementById("input-name");
+
 const message = document.getElementById("message");
 
 // importing axios dynamically
@@ -12,12 +14,14 @@ document.addEventListener("DOMContentLoaded", function(){
     document.body.appendChild(script);
 })
 
+
+// adds loading text before data loads
 const fetchUserData = (count) => {
     message.textContent="...loading";
     setTimeout(() => {
-        fetchUser(count);
         message.textContent="";
-    }, 2000);
+    }, 1000);
+    fetchUser(count);
 }
 
 async function fetchUser(count){
@@ -51,17 +55,33 @@ async function fetchUser(count){
 }
 
 const handleSearch = () => {
-    // getting the input text
-    const inputName = inputElement.textContent;
-
-    const profiles = document.getElementsByClassName(".user-individual");
-    
-
-    const existingUser = document.querySelector(".user-profile-container");
-
-    if(existingUser){
-        userContainer.removeChild(existingUser);
+    const userList = document.querySelectorAll(".user-individual");
+    const searchTerm = inputElement.value.toLowerCase();
+    // console.log(searchTerm);
+    if(searchTerm === ""){
+        alert("Enter username");
+        inputElement.focus();
+        return;
     }
 
-    userContainer.appendChild(reqProfile);
+    userList.forEach((user) => {
+        const username = user.querySelector("#username").textContent.toLowerCase();
+        if(username === searchTerm){
+            user.style.display = "block";
+        }else{
+            user.style.display = "none";
+        }
+    })
 }
+
+// const renderUsers = (user) => {
+//     const existingUser = document.querySelector(".user-profile-container");
+//     if(existingUser){
+//         userContainer.removeChild(existingUser);
+//     }
+//     const userDiv = document.createElement("div");
+//     userDiv.innerHTML = `
+//         <p>Name : ${user.name.first}</p>
+//         <img class="image" src="${user.picture.large}">
+//     `;
+// }

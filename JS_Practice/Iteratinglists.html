@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iterating Lists</title>
+    <style>
+        body{
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <h3>This is a List</h3>
+    <ul id="list">
+       <li id="list-item">item1</li>
+       <li id="list-item">item2</li>
+       <li id="list-item">item3</li>
+       <li id="list-item">item4</li>
+       <li id="list-item">item5</li>
+    </ul>
+    <script>
+        const itemList = document.querySelectorAll("#list-item");
+        // console.log(itemList.keys(1).return);
+        itemList.forEach((item) => {
+            console.log(item.textContent);
+        })
+    </script>
+</body>
+</html>

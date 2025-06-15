@@ -2,6 +2,9 @@
 
 const userContainer = document.getElementById("container");
 
+const loader = document.getElementById("loader");
+loader.style.display="none";
+
 const inputElement = document.getElementById("input-name");
 inputElement.addEventListener("keyup", function(event){
     if(event.key === "Enter"){
@@ -31,16 +34,15 @@ async function fetchUser(count){
 
         const allProfiles = document.createElement("div");
         allProfiles.className="user-profile-container";
-        message.textContent="loading...";
+        loader.style.display="inline"; 
         while(count > 0){
             const response =await axios.get("https://randomuser.me/api/")
                                        .then((response) => {
-                                        message.textContent="";
             const user = response.data.results[0];
             const userProfile = document.createElement("div");
             userProfile.className="user-individual";
             userProfile.innerHTML=`
-                <img class="image" src=${user.picture.large} alt="profile.png">
+                <img class="image" src=${user.picture.medium} alt="profile.png">
                 <p id="username">Name : ${user.name.first}</p>
                 <p id="email">Email : ${user.email}</p>
                 <p>Address : ${user.location.street.number} ${user.location.street.name}</p>
@@ -52,6 +54,7 @@ async function fetchUser(count){
             
             count -= 1;
         }
+        loader.style.display="none";
         userContainer.appendChild(allProfiles);
 
 
@@ -68,7 +71,7 @@ var handleSearch = () => {
         alert("Enter username");
         inputElement.focus();
         userList.forEach((user) => {
-            user.style.display = "block";
+            user.style.display = "flex";
         })
         return;
     }

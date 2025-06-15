@@ -151,3 +151,39 @@ const averageAge = () => {
     avg.innerHTML = `<p> Average age : ${Math.round(avgAge)} </p>`;
     searchContainer.append(avg);
 }
+
+let theme = true;
+
+document.querySelector(".slider").addEventListener("click", function(){
+    if(theme === true){
+        applyTheme("dark");
+        theme = false;
+    }else{
+        applyTheme("light");
+        theme = true;
+    }
+    
+});
+
+const applyTheme = (theme) => {
+    if(theme === "dark"){
+        document.body.style.backgroundColor="black";
+        document.body.style.color="white";
+        const buttons = document.body.querySelectorAll("#option-button");
+        buttons.forEach((button) => {
+            button.style.backgroundColor="white";
+            button.style.color="black";
+        })
+        // localStorage.setItem("theme", "dark");
+    }else{
+        document.body.style.backgroundColor="white";
+        document.body.style.color="black";
+        const buttons = document.body.querySelectorAll("#option-button");
+        buttons.forEach((button) => {
+            button.style.backgroundColor="black";
+            button.style.color="white";
+        })
+    
+        // localStorage.setItem("theme", "light");
+    }
+}

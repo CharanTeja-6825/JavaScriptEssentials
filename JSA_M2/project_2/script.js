@@ -69,7 +69,11 @@ const renderPokemon = (pokemon) => {
     <p>Weight : ${pokemon.weight} lbs</p>
     <p>Type : ${pokemon.types[0].type.name}</p>
     `;
+    // pokeBall.classList.add("poke-container");
     document.body.appendChild(pokeBall);
+    pokeBall.classList.add("pokeball");
+
+    const soundContainer = document.createElement("div");
 
     for (let index = 0; index < sounds.length; index++) {
         const button = document.createElement("button");
@@ -81,8 +85,9 @@ const renderPokemon = (pokemon) => {
         })
 
         button.style.margin="5px";
-        pokeBall.appendChild(button);
+        soundContainer.appendChild(button);
     }
+    pokeBall.appendChild(soundContainer);
 
     inputElement.focus();
     inputElement.value="";
